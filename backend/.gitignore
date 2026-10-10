@@ -1,0 +1,26 @@
+# Compiled Java and Maven artifacts
+target/
+*.class
+
+# Log files
+*.log
+
+# Runtime Uploads (Exclude all medical PDFs/reports, allow .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# Environment and Secret files
+.env
+.env.*
+!.env.example
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# Operating System files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,43 @@
+package com.meditrack.ai.dto;
+
+public class WeeklyFeedbackRequest {
+    private String caseId;
+    private Integer weekNumber;
+    private String q1CurrentSymptoms;
+    private String q2SymptomsImproved;
+    private String q3NewSymptoms;
+    private String q4SymptomsWorse;
+    private String q5SideEffects;
+    private String q6FollowedSchedule;
+    private String q7MissedMedicines;
+    private String q8ImprovementsNoticed;
+    private String q9ChallengesFaced;
+    private String q10DoctorNotes;
+
+    public WeeklyFeedbackRequest() {}
+
+    public String getCaseId() { return caseId; }
+    public void setCaseId(String caseId) { this.caseId = caseId; }
+    public Integer getWeekNumber() { return weekNumber; }
+    public void setWeekNumber(Integer weekNumber) { this.weekNumber = weekNumber; }
+    public String getQ1CurrentSymptoms() { return q1CurrentSymptoms; }
+    public void setQ1CurrentSymptoms(String q1CurrentSymptoms) { this.q1CurrentSymptoms = q1CurrentSymptoms; }
+    public String getQ2SymptomsImproved() { return q2SymptomsImproved; }
+    public void setQ2SymptomsImproved(String q2SymptomsImproved) { this.q2SymptomsImproved = q2SymptomsImproved; }
+    public String getQ3NewSymptoms() { return q3NewSymptoms; }
+    public void setQ3NewSymptoms(String q3NewSymptoms) { this.q3NewSymptoms = q3NewSymptoms; }
+    public String getQ4SymptomsWorse() { return q4SymptomsWorse; }
+    public void setQ4SymptomsWorse(String q4SymptomsWorse) { this.q4SymptomsWorse = q4SymptomsWorse; }
+    public String getQ5SideEffects() { return q5SideEffects; }
+    public void setQ5SideEffects(String q5SideEffects) { this.q5SideEffects = q5SideEffects; }
+    public String getQ6FollowedSchedule() { return q6FollowedSchedule; }
+    public void setQ6FollowedSchedule(String q6FollowedSchedule) { this.q6FollowedSchedule = q6FollowedSchedule; }
+    public String getQ7MissedMedicines() { return q7MissedMedicines; }
+    public void setQ7MissedMedicines(String q7MissedMedicines) { this.q7MissedMedicines = q7MissedMedicines; }
+    public String getQ8ImprovementsNoticed() { return q8ImprovementsNoticed; }
+    public void setQ8ImprovementsNoticed(String q8ImprovementsNoticed) { this.q8ImprovementsNoticed = q8ImprovementsNoticed; }
+    public String getQ9ChallengesFaced() { return q9ChallengesFaced; }
+    public void setQ9ChallengesFaced(String q9ChallengesFaced) { this.q9ChallengesFaced = q9ChallengesFaced; }
+    public String getQ10DoctorNotes() { return q10DoctorNotes; }
+    public void setQ10DoctorNotes(String q10DoctorNotes) { this.q10DoctorNotes = q10DoctorNotes; }
+}
