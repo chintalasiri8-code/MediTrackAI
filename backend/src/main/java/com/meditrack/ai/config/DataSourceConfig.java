@@ -125,9 +125,9 @@ public class DataSourceConfig {
         boolean mysqlWorks = false;
         try {
             Class.forName(driverClassName);
-            DriverManager.setLoginTimeout(5);
+            DriverManager.setLoginTimeout(15);
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
-                if (conn.isValid(5)) {
+                if (conn.isValid(15)) {
                     mysqlWorks = true;
                     log.info("MySQL Database connection verified successfully to: {}", url);
                 }
