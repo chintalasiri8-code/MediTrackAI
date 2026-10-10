@@ -9,6 +9,9 @@ spring:
     driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
     username: ${SPRING_DATASOURCE_USERNAME:root}
     password: ${SPRING_DATASOURCE_PASSWORD:}
+    hikari:
+      initialization-fail-timeout: -1
+      connection-timeout: 30000
   jpa:
     database-platform: ${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.MySQLDialect}
     hibernate:
@@ -32,5 +35,5 @@ meditrack:
     enabled: false
 
 app:
-  jwtSecret: ${JWT_SECRET}
+  jwtSecret: ${JWT_SECRET:meditrack-ai-default-secure-jwt-secret-key-32bytes-min-2026}
   jwtExpirationInMs: 86400000

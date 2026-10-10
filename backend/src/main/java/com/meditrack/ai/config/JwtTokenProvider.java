@@ -13,14 +13,23 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    @Value("${app.jwtSecret}")
+    @Value("${app.jwtSecret:meditrack-ai-default-secure-jwt-secret-key-32bytes-min-2026}")
     private String jwtSecret;
 
     private Key key;
 
     @PostConstruct
     public void init() {
-        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+        String secret = (jwtSecret != null && !jwtSecret.isBlank())
+                ? jwtSecret
+                : "meditrack-ai-default-secure-jwt-secret-key-32bytes-min-2026";
+        byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
+        if (keyBytes.length < 32) {
+            byte[] padded = new byte[32];
+            System.arraycopy(keyBytes, 0, padded, 0, keyBytes.length);
+            keyBytes = padded;
+        }
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     @Value("${app.jwtExpirationInMs:86400000}")
