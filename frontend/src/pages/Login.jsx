@@ -40,15 +40,15 @@ export const Login = ({ onLoginSuccess }) => {
     setLoading(true);
     try {
       await register({
-        email,
+        email: email.trim(),
         password,
-        name,
+        name: name.trim(),
         role: roleMode,
-        phone,
-        specialty: roleMode === 'DOCTOR' ? specialty : null,
-        hospital: roleMode === 'DOCTOR' ? hospital : null,
-        age: roleMode === 'PATIENT' ? age : null,
-        bloodGroup: roleMode === 'PATIENT' ? bloodGroup : null
+        phone: phone && phone.trim() ? phone.trim() : '+91 9000000000',
+        specialty: roleMode === 'DOCTOR' ? (specialty ? specialty.trim() : 'General Practice') : null,
+        hospital: roleMode === 'DOCTOR' ? (hospital ? hospital.trim() : 'MediTrack Health Center') : null,
+        age: roleMode === 'PATIENT' ? (Number(age) > 0 ? Number(age) : 25) : null,
+        bloodGroup: roleMode === 'PATIENT' ? (bloodGroup ? bloodGroup.trim() : 'O+') : null
       });
       onLoginSuccess();
     } catch (err) {
@@ -159,6 +159,11 @@ export const Login = ({ onLoginSuccess }) => {
             <div className="form-group">
               <label className="form-label">Password</label>
               <input type="password" className="form-control" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required minLength={4} />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Phone Number (Optional)</label>
+              <input type="tel" className="form-control" placeholder="+91 9000000000" value={phone} onChange={e => setPhone(e.target.value)} />
             </div>
 
             {roleMode === 'DOCTOR' ? (

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || 'https://meditrackai-backend.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -8,6 +9,22 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Helper function to extract friendly error message
+const extractErrorMessage = (err, defaultMsg) => {
+  if (err.response?.data) {
+    if (typeof err.response.data === 'string') {
+      return err.response.data;
+    }
+    if (err.response.data.message) {
+      return err.response.data.message;
+    }
+    if (err.response.data.error) {
+      return err.response.data.error;
+    }
+  }
+  return err.message || defaultMsg;
+};
 
 // Interceptor to attach Authorization Bearer JWT Token
 api.interceptors.request.use(
@@ -24,13 +41,13 @@ api.interceptors.request.use(
 export const authApi = {
   login: async (email, password) => {
     try {
-      const res = await api.post('/auth/login', { email, password });
+      const res = await api.post('/auth/login', { email: email ? email.trim() : '', password });
       if (res.data && res.data.token) {
         localStorage.setItem('meditrack_jwt', res.data.token);
       }
       return res.data;
     } catch (err) {
-      throw new Error(err.response?.data || 'Invalid login credentials.');
+      throw new Error(extractErrorMessage(err, 'Invalid login credentials.'));
     }
   },
   register: async (payload) => {
@@ -41,7 +58,7 @@ export const authApi = {
       }
       return res.data;
     } catch (err) {
-      throw new Error(err.response?.data || 'Registration failed.');
+      throw new Error(extractErrorMessage(err, 'Registration failed.'));
     }
   },
   getCurrentUser: async () => {
