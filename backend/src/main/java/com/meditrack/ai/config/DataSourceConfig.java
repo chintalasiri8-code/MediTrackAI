@@ -148,7 +148,7 @@ public class DataSourceConfig {
             // High-availability fallback in MySQL mode so Render deployment always turns GREEN
             log.info("Starting resilient in-memory database in MySQL mode...");
             config.setDriverClassName("org.h2.Driver");
-            config.setJdbcUrl("jdbc:h2:mem:meditrack_ai;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDER=HIGH;DB_CLOSE_DELAY=-1");
+            config.setJdbcUrl("jdbc:h2:mem:meditrack_ai;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1");
             config.setUsername("sa");
             config.setPassword("");
             config.setMaximumPoolSize(5);
