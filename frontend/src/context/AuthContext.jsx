@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('meditrack_jwt');
+    localStorage.removeItem('meditrack_current_user');
     setUser(null);
     setPatient(null);
     setDoctor(null);
